@@ -1,16 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Content from './components/Content';
 import Footer from './components/Footer'
+import Home from './pages';
+import About from './pages/about';
+import { Switch, Route } from 'react-router-dom'
 
 function App() {
   return (
     <>
       <Navbar />
-      <Hero />
-      <Content />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/about" exact component={About} />
+      </Switch>
       <Footer />
     </>
   );
