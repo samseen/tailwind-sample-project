@@ -1,3 +1,4 @@
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer'
@@ -8,10 +9,16 @@ import Dropdown from './components/Dropdown'
 import { Switch, Route } from 'react-router-dom'
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggle = () => {
+    setIsOpen(!isOpen)
+  };
+
   return (
     <>
-      <Navbar />
-      <Dropdown />
+      <Navbar toggle={toggle} />
+      <Dropdown isOpen={isOpen} toggle={toggle}/>
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/menu" exact component={Menu} />
