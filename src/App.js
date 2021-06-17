@@ -15,10 +15,25 @@ function App() {
     setIsOpen(!isOpen)
   };
 
+  useEffect(() => {
+    const hideMenu = () => {
+      if(window.innerWidth > 768 && isOpen) {
+        setIsOpen(false)
+        console.log('I resized')
+      }
+    }
+
+    window.addEventListener('resize', hideMenu)
+
+    return () => {
+      window.removeEventListener('resize', hideMenu)
+    };
+  })
+
   return (
     <>
       <Navbar toggle={toggle} />
-      <Dropdown isOpen={isOpen} toggle={toggle}/>
+      <Dropdown isOpen={isOpen} toggle={toggle} />
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/menu" exact component={Menu} />
